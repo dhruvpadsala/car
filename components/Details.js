@@ -79,6 +79,7 @@ const Details = props => {
             justifyContent: 'space-evenly',
             flexDirection: 'row',
             width: '100%',
+            marginTop:-20,
           }}>
           <View>
             <Image
@@ -91,7 +92,7 @@ const Details = props => {
               }}
             />
           </View>
-          <View style={{flexDirection: 'column'}}>
+          <View style={{flexDirection: 'column',marginBottom:10}}>
             <Text style={styles.title}>{props.item.company}</Text>
             <Text style={styles.title}>{props.item.model}</Text>
           </View>
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     // height: '50%',
     borderRadius: 15,
-    marginTop: -20,
+    // marginTop: -30,
   },
   header: {
     flex: 1,
@@ -136,15 +137,15 @@ const styles = StyleSheet.create({
     // padding: 10,
     // borderWidth: 1,
     // marginLeft:10,
-    width: '100%',
+    // width: '100%',
     flexDirection: 'column',
     flexWrap: 'wrap',
     alignItems: 'center',
-
-    width: '45%',
+     width: '45%',
     borderWidth: 1,
     borderRadius: 30,
     margin: 10,
+    // height:'100%'
     // justifyContent: 'space-between',
     // backgroundColor: 'white',
     // width: '100%',
@@ -160,7 +161,6 @@ const styles = StyleSheet.create({
   title: {
     //  marginTop: -10,
     fontSize: 18,
-    marginBottom: 10,
     // marginLeft: 15,
     color: '#ff9100',
   },

@@ -17,6 +17,7 @@ import Addcar from './components/Addcar';
 import Adddriver from './components/Adddriver';
 import Register from './components/Register';
 import axios from 'axios';
+import Drawerscreen from './components/Drawer';
 
 
 const HomeStack = createStackNavigator();
@@ -37,6 +38,8 @@ const HomeStackScreen = () => {
       <HomeStack.Screen name="Addcar" component={Addcar} />
       <HomeStack.Screen name="Adddriver" component={Adddriver} />
       <HomeStack.Screen name="Register" component={Register} />
+      <HomeStack.Screen name="Drawerscreen" component={Drawerscreen} />
+
       <HomeStack.Screen
         name="Profile"
         component={Dashboard}
@@ -49,23 +52,26 @@ const App = () => {
    const [ison, setison] = useState(false);
    useEffect(async () => {
      let isonic = await AsyncStorage.getItem('toggleval');
+     let userdata = await AsyncStorage.getItem('userdata');
+     userdata = JSON.parse(userdata)
+     console.log("usedata===>",userdata.email);
      console.log('isonic==>app.js', isonic);
      setison(isonic == 'true');
    }, [ison]);
-   useEffect(() => {
-      axios.get("http://b2b.yoursthangam.com/api/customer/cityList/12")
-      .then((response)=>{
-        console.log("response from city ===>",response.data.data[0]);
-      })
-      .catch((Error)=>{
-        console.log("Error==>",Error)
-      })
-   }, [])
+  //  useEffect(() => {
+  //     axios.get("http://b2b.yoursthangam.com/api/customer/cityList/12")
+  //     .then((response)=>{
+  //       console.log("response from city ===>",response.data.data[0]);
+  //     })
+  //     .catch((Error)=>{
+  //       console.log("Error==>",Error)
+  //     })
+  //  }, [])
   return (
-    <NavigationContainer theme={ison ? DarkTheme : DefaultTheme}>
+    <NavigationContainer>
       <Drawer.Navigator
         drawerContentOptions={{
-          inactiveTintColor: ison ? 'white' : 'black',
+          inactiveTintColor: ison ? 'black' : 'white',
           activeTintColor: ison ? 'white' : 'black',
           activeBackgroundColor: '#ffa726',
           // backgroundColor: ison ? styles.darktheme : styles.whitetheme,
@@ -75,7 +81,9 @@ const App = () => {
         }}
         // drawerStyle={ison ? styles.darktheme : styles.whitetheme}
         // // drawerContent={props => <Drawerscreen {...props} />}
+        drawerContent={props => <Drawerscreen {...props} />}
       >
+
         <Drawer.Screen name="Home" component={HomeStackScreen} />
         <Drawer.Screen name="Garage" component={Garage} />
 
